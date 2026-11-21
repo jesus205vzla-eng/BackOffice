@@ -1,3 +1,10 @@
+/* ==========================================================
+   Game List · Backoffice
+   Colores: azul oscuro #171a3a, morado #6a2ba4,
+   cian #3fd0d4, rosa #ff5d8f, fondo claro #f3f2fa
+   ========================================================== */
+
+/* ---------- General ---------- */
 
 * {
   box-sizing: border-box;
@@ -37,23 +44,20 @@ a {
 
 /* ---------- Login y Register ---------- */
 
+/* Toda la página es de un solo morado, con el joystick de fondo */
 .auth {
   min-height: 100vh;
-}
-
-/* Panel morado con la imagen del joystick */
-.auth__brand {
-  min-height: 11rem;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 13rem;
   color: white;
   background-color: #6a2ba4;
   background-image: url("Imagenes/joystick.webp");
-  background-position: center;
-  background-size: cover;
+  background-position: center bottom;
+  background-size: 12rem;
+  background-repeat: no-repeat;
   image-rendering: pixelated; /* mantiene los píxeles nítidos */
 }
 
-/* Logo: un cuadrito rosa y el nombre */
+/* Logo: un cuadrito blanco y el nombre */
 .brand {
   font-family: "Courier New", monospace;
   font-size: 1.4rem;
@@ -68,38 +72,22 @@ a {
   width: 1.2rem;
   height: 1.2rem;
   margin-right: 0.6rem;
-  background-color: #ff5d8f;
+  background-color: white;
 }
 
-/* El texto del panel solo se muestra en pantallas grandes */
+/* El texto va arriba y el formulario abajo */
 .auth__pitch {
-  display: none;
   max-width: 28rem;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .auth__pitch h2 {
-  font-size: 2.5rem;
-}
-
-.auth__pitch p {
-  color: #d9f5f6;
-}
-
-.auth__main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
+  font-size: 1.6rem;
 }
 
 .card {
-  width: 100%;
-  max-width: 26rem;
-}
-
-.card__lead {
-  color: #4a4d70;
+  max-width: 28rem;
+  margin-top: 2.5rem;
 }
 
 /* ---------- Formularios ---------- */
@@ -133,7 +121,6 @@ a {
   display: block;
   margin-top: 0.35rem;
   font-size: 0.85rem;
-  color: #4a4d70;
 }
 
 .btn {
@@ -141,17 +128,17 @@ a {
   font-size: 1rem;
   font-weight: bold;
   text-decoration: none;
-  color: #171a3a;
-  background-color: #ff5d8f;
-  border: 2px solid #ff5d8f;
+  color: #6a2ba4;
+  background-color: white;
+  border: 2px solid white;
   border-radius: 0.5rem;
   cursor: pointer;
 }
 
 .btn:hover {
   color: white;
-  background-color: #171a3a;
-  border-color: #171a3a;
+  background-color: #4a1d75;
+  border-color: #4a1d75;
 }
 
 /* El botón del formulario ocupa todo el ancho */
@@ -167,7 +154,10 @@ a {
 
 .crearCuenta {
   margin-top: 1.5rem;
-  color: #4a4d70;
+}
+
+.crearCuenta a {
+  color: white;
 }
 
 /* ---------- Home ---------- */
@@ -256,162 +246,12 @@ th {
 
 @media (min-width: 900px) {
   .auth {
-    display: flex;
+    padding: 3rem 4rem;
+    background-position: right center;
+    background-size: 30rem;
   }
 
-  .auth__brand {
-    flex: 1;
-    padding: 3rem;
-    background-position: center bottom;
-    background-size: 36rem;
-    background-repeat: no-repeat;
-  }
-
-  .auth__main {
-    flex: 1;
-  }
-
-  .auth__pitch {
-    display: block;
-  }
-}
-
-/* ---------- Login en una sola columna ---------- */
-
-.auth--login {
-  display: block;
-  padding: clamp(1.5rem, 4vw, 3rem);
-  color: white;
-  background-color: #6a2ba4;
-}
-
-.auth--login .auth__brand {
-  width: 100%;
-  max-width: 36rem;
-  min-height: 0;
-  margin: 0;
-  padding: 0;
-  background: none;
-  flex: none;
-}
-
-.auth--login .brand::before {
-  background-color: white;
-}
-
-.auth--login .auth__pitch {
-  display: block;
-  max-width: 36rem;
-  margin-top: clamp(2.5rem, 8vh, 5rem);
-}
-
-.auth--login .auth__pitch h2 {
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-}
-
-.auth--login .auth__pitch p {
-  color: white;
-  font-size: 0.95rem;
-}
-
-.auth--login .auth__main {
-  justify-content: flex-start;
-  width: 100%;
-  max-width: 36rem;
-  padding: 1.5rem 0 0;
-  flex: none;
-}
-
-.auth--login .card {
-  max-width: none;
-}
-
-.auth--login .card h1,
-.auth--login .correo label,
-.auth--login .contrasena label,
-.auth--login .crearCuenta {
-  color: white;
-}
-
-.auth--login .crearCuenta a {
-  color: white;
-}
-
-.auth--login .btn {
-  color: #6a2ba4;
-  background-color: white;
-  border-color: white;
-}
-
-.auth--login .btn:hover {
-  color: white;
-  background-color: #4a1d75;
-  border-color: #4a1d75;
-}
-
-@media (min-width: 768px) {
-  .auth--login {
-    background-image: url("Imagenes/joystick.webp");
-    background-repeat: no-repeat;
-    background-position: right 5vw center;
-    background-size: min(35vw, 32rem);
-  }
-
-  .auth--login .auth__brand,
-  .auth--login .auth__pitch,
-  .auth--login .auth__main {
-    max-width: min(36rem, 55vw);
-  }
-}
-
-@media (max-height: 760px) {
-  .auth--login {
-    padding-block: 1rem;
-  }
-
-  .auth--login .auth__pitch {
-    margin-top: 1.25rem;
-  }
-
-  .auth--login .auth__pitch h2 {
-    margin-bottom: 0.5rem;
-    font-size: clamp(1.35rem, 2.4vw, 1.75rem);
-  }
-
-  .auth--login .auth__pitch p {
-    margin-bottom: 0;
-    font-size: 0.875rem;
-  }
-
-  .auth--login .auth__main {
-    padding-top: 0.75rem;
-  }
-
-  .auth--login .card h1 {
-    margin-bottom: 0.35rem;
-    font-size: 1.5rem;
-  }
-
-  .auth--login .correo,
-  .auth--login .contrasena {
-    margin-bottom: 0.5rem;
-  }
-
-  .auth--login .correo label,
-  .auth--login .contrasena label {
-    margin-bottom: 0.2rem;
-  }
-
-  .auth--login .correo input,
-  .auth--login .contrasena input {
-    padding: 0.55rem 0.7rem;
-  }
-
-  .auth--login .btn {
-    padding: 0.6rem 1rem;
-  }
-
-  .auth--login .crearCuenta {
-    margin-top: 0.75rem;
+  .auth__pitch h2 {
+    font-size: 2rem;
   }
 }
