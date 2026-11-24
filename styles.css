@@ -1,3 +1,11 @@
+/* ==========================================================
+   Game List · Backoffice
+   Colores: azul oscuro #171a3a, morado #6a2ba4,
+   verde lima #a3e635
+   ========================================================== */
+
+/* ---------- General ---------- */
+
 * {
   box-sizing: border-box;
 }
@@ -7,11 +15,12 @@ body {
   font-family: Arial, sans-serif;
   line-height: 1.5;
   color: #171a3a;
-  background-color: #f3f2fa;
+  background-color: #6a2ba4;
 }
 
 h1,
-h2 {
+h2,
+h3 {
   font-family: "Courier New", monospace;
   margin-top: 0;
 }
@@ -20,7 +29,13 @@ a {
   color: #5b3fd0;
 }
 
+/* Para que el atributo hidden siempre oculte el elemento,
+   aunque la clase del elemento tenga su propio display */
+[hidden] {
+  display: none !important;
+}
 
+/* Enlace "Saltar al formulario": solo se ve al navegar con el teclado */
 .skip-link {
   position: absolute;
   left: 1rem;
@@ -34,7 +49,9 @@ a {
   top: 1rem;
 }
 
+/* ---------- Login y Register ---------- */
 
+/* Toda la página es de un solo morado, con el joystick de fondo */
 .auth {
   min-height: 100vh;
   padding: 1.5rem 1.5rem 13rem;
@@ -43,14 +60,18 @@ a {
   background-image: url("Imagenes/joystick.webp");
   background-position: center bottom;
   background-size: 12rem;
+  background-repeat: no-repeat;
+  image-rendering: pixelated; /* mantiene los píxeles nítidos */
 }
 
+/* Logo: un cuadrito blanco y el nombre */
 .brand {
   font-family: "Courier New", monospace;
   font-size: 1.4rem;
   font-weight: bold;
   color: white;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .brand::before {
@@ -62,6 +83,7 @@ a {
   background-color: white;
 }
 
+/* El texto va arriba y el formulario abajo */
 .auth__pitch {
   max-width: 28rem;
   margin-top: 2rem;
@@ -76,16 +98,19 @@ a {
   margin-top: 2.5rem;
 }
 
+/* ---------- Formularios ---------- */
 
 .nombre,
 .correo,
-.contrasena {
+.contrasena,
+.campo {
   margin-bottom: 1.1rem;
 }
 
 .nombre label,
 .correo label,
-.contrasena label {
+.contrasena label,
+.campo label {
   display: block;
   margin-bottom: 0.35rem;
   font-weight: bold;
@@ -93,11 +118,14 @@ a {
 
 .nombre input,
 .correo input,
-.contrasena input {
+.contrasena input,
+.campo input,
+.campo textarea {
   width: 100%;
   padding: 0.7rem;
   font-size: 1rem;
   color: #171a3a;
+  font-family: inherit;
   border: 2px solid #4a4d70;
   border-radius: 0.5rem;
 }
@@ -110,6 +138,7 @@ a {
 
 .btn {
   padding: 0.8rem 1.25rem;
+  font-family: inherit;
   font-size: 1rem;
   font-weight: bold;
   text-decoration: none;
@@ -126,15 +155,78 @@ a {
   border-color: #4a1d75;
 }
 
-
+/* El botón del formulario ocupa todo el ancho */
 .form .btn {
   width: 100%;
 }
 
 .btn--ghost {
-  color: white;
+  color: #171a3a;
   background-color: transparent;
+  border-color: #171a3a;
+}
+
+/* Botones para fondos claros (el botón normal es blanco) */
+.btn--lima {
+  color: #171a3a;
+  background-color: #a3e635;
+  border-color: #a3e635;
+}
+
+.btn--lima:hover {
+  color: #6a2ba4;
+  background-color: white;
   border-color: white;
+}
+
+.btn--morado {
+  color: white;
+  background-color: #6a2ba4;
+  border-color: #6a2ba4;
+}
+
+.btn--borde {
+  color: #6a2ba4;
+  background-color: transparent;
+  border-color: #6a2ba4;
+}
+
+.btn--peligro {
+  color: white;
+  background-color: #b3261e;
+  border-color: #b3261e;
+}
+
+.btn--peligro:hover {
+  background-color: #8a1c16;
+  border-color: #8a1c16;
+}
+
+.btn--chico {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Avisos de éxito o error */
+.mensaje {
+  margin: 0 0 1rem;
+  padding: 0.7rem 1rem;
+  color: #171a3a;
+  background-color: white;
+  border-left: 6px solid #a3e635;
+  border-radius: 0.5rem;
+}
+
+.mensaje--error {
+  color: white;
+  background-color: #b3261e;
+  border-left-color: #8a1c16;
 }
 
 .crearCuenta {
@@ -145,13 +237,23 @@ a {
   color: white;
 }
 
-
+/* ---------- Home ---------- */
 
 .topbar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem 1rem;
   padding: 1rem 1.5rem;
+  background-color: #a3e635;
+}
+
+.topbar .brand {
+  color: #171a3a;
+}
+
+.topbar .brand::before {
   background-color: #171a3a;
 }
 
@@ -159,13 +261,14 @@ a {
   max-width: 64rem;
   margin: 0 auto;
   padding: 1.5rem;
+  color: white;
 }
 
 .panel h1 {
   font-size: 2.2rem;
 }
 
-
+/* Tarjetas con números: se acomodan en fila y bajan si no caben */
 .estadisticas {
   display: flex;
   flex-wrap: wrap;
@@ -177,15 +280,13 @@ a {
 
 .estadisticas li {
   flex: 1;
+  max-width: 18rem;
+  color: #171a3a;
   min-width: 12rem;
   padding: 1rem 1.25rem;
   background-color: white;
-  border-left: 6px solid #3fd0d4;
+  border-left: 6px solid #a3e635;
   border-radius: 0.5rem;
-}
-
-.estadisticas li:first-child {
-  border-left-color: #ff5d8f;
 }
 
 .estadisticas strong {
@@ -198,36 +299,91 @@ a {
   color: #4a4d70;
 }
 
-.tabla {
+/* ---------- Proyectos (CRUD) ---------- */
+
+.usuario {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #171a3a;
+}
+
+.botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.formulario {
+  margin: 1.5rem 0;
+  color: #171a3a;
+  padding: 1.25rem;
   background-color: white;
   border-radius: 0.5rem;
 }
 
-table {
+.formulario .botones {
+  margin-top: 1rem;
+}
+
+.proyectos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.proyecto {
+  flex: 1 1 18rem;
+  color: #171a3a;
+  max-width: 26rem;
+  padding: 1.25rem;
+  background-color: white;
+  border-top: 6px solid #a3e635;
+  border-radius: 0.5rem;
+}
+
+.proyecto__imagen {
   width: 100%;
-  border-collapse: collapse;
+  height: 10rem;
+  margin-bottom: 0.75rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
 }
 
-caption {
-  padding: 1rem;
-  font-family: "Courier New", monospace;
-  font-size: 1.25rem;
+.proyecto__titulo {
+  margin-bottom: 0.5rem;
+  font-family: Arial, sans-serif;
+  font-size: 1.3rem;
   font-weight: bold;
-  text-align: left;
 }
 
-th,
-td {
-  padding: 0.75rem 1rem;
-  text-align: left;
-  border-top: 1px solid #d8d7ea;
+.proyecto__descripcion {
+  margin: 0 0 0.75rem;
 }
 
-th {
-  color: #4a4d70;
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
 }
 
+.etiquetas li {
+  padding: 0.1rem 0.6rem;
+  font-size: 0.85rem;
+  background-color: #ecfccb;
+  border-radius: 999px;
+}
 
+.proyecto__repo {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Pantallas grandes (900px o más) ---------- */
 
 @media (min-width: 900px) {
   .auth {

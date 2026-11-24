@@ -3,56 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=login.html">
   <meta name="robots" content="noindex">
   <title>Panel · Game List Backoffice</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<!-- El body está oculto hasta que home.js confirma que hay una sesión válida -->
+<body hidden>
   <header class="topbar">
-    <a class="brand" href="login.html">Game List</a>
-    <a class="btn btn--ghost" href="login.html">Cerrar sesión</a>
+    <a class="brand" href="home.html">Game List</a>
+    <div class="usuario">
+      <span id="nombre-usuario"></span>
+      <button class="btn btn--ghost btn--chico" id="cerrar-sesion" type="button">Cerrar sesión</button>
+    </div>
   </header>
 
   <main class="panel">
-    <h1>Resumen de la plataforma</h1>
-    <p>Esto es lo que pasa hoy en Game List.</p>
+    <h1>Mis proyectos</h1>
+    <p>Agrega, actualiza o elimina los proyectos de tu portafolio.</p>
+
+    <p class="mensaje" id="mensaje" role="alert" hidden></p>
 
     <ul class="estadisticas">
-      <li><strong>1,284</strong><span>Jugadores activos</span></li>
-      <li><strong>56</strong><span>Partidas hoy</span></li>
-      <li><strong>38</strong><span>Juegos en catálogo</span></li>
+      <li><strong id="total-proyectos">0</strong><span>Proyectos</span></li>
     </ul>
 
-    <div class="tabla">
-      <table>
-        <caption>Últimos juegos agregados</caption>
-        <thead>
-          <tr>
-            <th scope="col">Juego</th>
-            <th scope="col">Plataforma</th>
-            <th scope="col">Calificación</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Neon Drift</td>
-            <td>PC</td>
-            <td>9.1</td>
-          </tr>
-          <tr>
-            <td>Castle Quest</td>
-            <td>Switch</td>
-            <td>8.4</td>
-          </tr>
-          <tr>
-            <td>Pixel Racers</td>
-            <td>Móvil</td>
-            <td>7.8</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <button class="btn btn--lima" id="btn-agregar" type="button">Agregar proyecto</button>
+
+    <!-- Formulario para crear y actualizar -->
+    <section class="formulario" id="formulario" hidden>
+      <h2 id="titulo-formulario">Agregar proyecto</h2>
+      <p class="mensaje" id="mensaje-formulario" role="alert" hidden></p>
+
+      <form id="form-proyecto">
+        <div class="campo">
+          <label for="titulo">Título</label>
+          <input id="titulo" type="text" required>
+        </div>
+        <div class="campo">
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" rows="3" required></textarea>
+        </div>
+        <div class="campo">
+          <label for="tecnologias">Tecnologías</label>
+          <input id="tecnologias" type="text" placeholder="Unity, C#, JavaScript" aria-describedby="tec-hint">
+          <span class="field__hint" id="tec-hint">Sepáralas con comas.</span>
+        </div>
+        <div class="campo">
+          <label for="repositorio">Repositorio (opcional)</label>
+          <input id="repositorio" type="url" placeholder="https://github.com/usuario/proyecto">
+        </div>
+        <div class="campo">
+          <label for="imagenes">Imágenes (opcional)</label>
+          <input id="imagenes" type="text" placeholder="https://..." aria-describedby="img-hint">
+          <span class="field__hint" id="img-hint">Direcciones separadas por comas.</span>
+        </div>
+        <div class="botones">
+          <button class="btn btn--morado" id="btn-guardar" type="submit">Guardar</button>
+          <button class="btn btn--borde" id="btn-cancelar" type="button">Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Aquí se muestran los proyectos -->
+    <div class="proyectos" id="lista-proyectos"></div>
+    <p id="sin-proyectos" hidden>Aún no tienes proyectos. Usa el botón "Agregar proyecto" para crear el primero.</p>
   </main>
+
+  <!-- Plantilla de cada proyecto: home.js la copia por cada proyecto -->
+  <template id="plantilla-proyecto">
+    <article class="proyecto">
+      <img class="proyecto__imagen" alt="" hidden>
+      <h3 class="proyecto__titulo"></h3>
+      <p class="proyecto__descripcion"></p>
+      <ul class="etiquetas"></ul>
+      <a class="proyecto__repo" target="_blank" rel="noopener" hidden>Ver repositorio</a>
+      <div class="botones">
+        <button class="btn btn--morado btn--chico btn-editar" type="button">Actualizar</button>
+        <button class="btn btn--peligro btn--chico btn-eliminar" type="button">Eliminar</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
 </body>
 </html>
