@@ -238,9 +238,25 @@ function crearTarjeta(proyecto) {
   }
 
   const id = proyecto._id || proyecto.id;
-  tarjeta.querySelector(".btn-editar").addEventListener("click", () => mostrarFormulario(proyecto));
+  tarjeta.querySelector(".btn-editar").addEventListener("click", () => editarProyecto(proyecto));
   tarjeta.querySelector(".btn-eliminar").addEventListener("click", () => borrarProyecto(id, proyecto.title));
   return tarjeta;
+}
+
+/* -- Leer un proyecto (GET /projects/:id) --*/
+
+// Pide a la api el proyecto por su id y llena el formulario con sus datos actuales
+async function editarProyecto(proyecto) {
+  const id = proyecto._id || proyecto.id;
+  mensaje.hidden = true;
+
+  try {
+    const datos = await peticion("/projects/" + id);
+    // Si la respuesta no trae el proyecto, se usa el de la lista
+    mostrarFormulario(datos && datos.title ? datos : proyecto);
+  } catch (error) {
+    mostrarFormulario(proyecto);
+  }
 }
 
 /* -- Crear y Actualizar --*/
